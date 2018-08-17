@@ -1,6 +1,5 @@
-SGB
-Sistema de gerenciamento Bancário de Engenharia de Software
+Sistema de Gerenciamento Bancário, migrado da linguagem Java para a linguagem Python, adicinando testes com bibliotecas e funções embutidas do Python.
 
-Qualquer modificação deve ser mencionada via comentário
+Basicamente o sistema é um CRUD!
 
 
