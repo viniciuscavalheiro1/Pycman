@@ -1,2 +1,2 @@
 SGB
-Sistema de gerenciamento Bancário
+Sistema de gerenciamento Bancário de Engenharia de Software
