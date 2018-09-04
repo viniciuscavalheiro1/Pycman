@@ -7,7 +7,7 @@ class Pessoa:
     def __init__(self, nome, cpf):
         """Valores para pessoa."""
         self.nome = nome
-        self.__cpf = cpf
+        self._cpf = cpf
 
     def get_nome(self):
         """Retorna nome."""
@@ -19,11 +19,11 @@ class Pessoa:
 
     def get_cpf(self):
         """Retorna CPF."""
-        return self.__cpf
+        return self._cpf
 
     def set_cpf(self, cpf):
         """Atualiza CPF."""
-        self.__cpf = cpf
+        self._cpf = cpf
 
 
 class Conta(Pessoa):
@@ -31,30 +31,30 @@ class Conta(Pessoa):
 
     def __init__(self, nome, cpf):
         """Dados da conta."""
-        self.__init__(nome, cpf)
-        self.__num_conta = ''
-        self.__senha = ''
-        self.__saldo = 0
+        super().__init__(nome, cpf)
+        self._num_conta = ''
+        self._senha = ''
+        self._saldo = 0
 
     def get_num_conta(self):
         """Retorna numero da conta."""
-        return self.__num_conta
+        return self._num_conta
 
     def get_senha(self):
         """Retorna senha."""
-        return self.__senha
+        return self._senha
 
     def set_senha(self, senha):
         """Atualiza senha."""
-        self.__senha = senha
+        self._senha = senha
 
     def get_saldo(self):
         """Retorna Saldo."""
-        return self.__saldo
+        return self._saldo
 
     def set_saldo(self, saldo):
         """Atualiza Saldo."""
-        self.__saldo = saldo
+        self._saldo = saldo
 
 
 class Contato(Conta):
@@ -62,7 +62,7 @@ class Contato(Conta):
 
     def __init__(self, nome, cpf, num_telefone, email, endereco):
         """Passando os dados pelo construtor e recebendo os dados."""
-        self.__init__(nome, cpf)
+        super().__init__(nome, cpf)
         self.num_telefone = num_telefone
         self.email = email
         self.endereco = endereco
