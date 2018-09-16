@@ -35,6 +35,8 @@ class Conta(Pessoa):
         self._num_conta = ''
         self._senha = ''
         self._saldo = 0
+        self._extrato = []
+
 
     def get_num_conta(self):
         """Retorna numero da conta."""
@@ -52,10 +54,41 @@ class Conta(Pessoa):
         """Retorna Saldo."""
         return self._saldo
 
-    def set_saldo(self, saldo):
-        """Atualiza Saldo."""
-        self._saldo = saldo
+    def get_extrato(self):
+        """Retorna Extrato."""
+        return self._extrato
 
+    def sacar(self, valor):
+        """Saca (retira) um valor da conta"""
+        if(valor > (self.saldo + 5.00)):
+            print('Impossivel Sacar este valor | Saldo insuficiente')
+        else:
+            self.saldo -= (valor+5.0)
+            self.extrato.append("Saque de: {0: .2f} R$".format(valor))
+        
+    def depositar(self, valor):
+        """Deposita (adiciona) um valor na conta"""
+        self.deposita += (valor-5.00)
+        self.extrato.append("Deposito de: {0: .2f} R$ ".format(valor))
+        
+    def transferir(self, conta, valor):
+        """transfere valor de uma conta a outra"""
+        if(valor > (self.saldo + 5.00)):
+            print('Impossivel Transferir este valor | Saldo insuficiente')
+        else:
+            conta.depositar(valor)
+            self.sacar(valor+5.0)
+            self.extrato.append("Tranferência de: {0:.2f} R$".format(valor))
+
+    def imprimirExtrato(self):
+        print("Numero da conta: {0}".format(self.num_conta))
+        for i in self.range(0,5):
+            print(i + " " + self.extrato[i])
+            
+    def verificarSaldo(self):
+         print("Numero da conta: {0}".format(self.num_conta))
+         print("Saldo: {0:.2f}".format(self.saldo))
+         
 
 class Contato(Conta):
     """Dados do contato."""
@@ -90,3 +123,4 @@ class Contato(Conta):
     def set_endereco(self, endereco):
         u"""Atualiza endereço."""
         self.endereco = endereco
+
