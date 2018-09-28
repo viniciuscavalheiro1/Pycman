@@ -11,15 +11,6 @@ public class Cliente extends Usuario {
 	/* CRIAR CONSTRUTORES E GETTERS AND SETTERS */	
 	
 	
-	public String toString() {
-		return "NumeroConta: " + 
-				getNumeroConta() +
-				"\nNome:" +
-				getNome() +
-				"\nSaldo=" +
-				String.format("%.2f R$",getSaldo()) +
-				"\nTipo=" +
-				getTipo();
-	}
+
 	
 }
