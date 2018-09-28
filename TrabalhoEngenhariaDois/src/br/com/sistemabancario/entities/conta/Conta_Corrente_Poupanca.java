@@ -1,5 +1,55 @@
 package br.com.sistemabancario.entities.conta;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
+import br.com.sistemabancario.application.BancoDeDados.BancoDeDados;
+
 public class Conta_Corrente_Poupanca extends Conta{
 
+	BancoDeDados contaCorrentePoupanca = new BancoDeDados();
+	
+	public Conta_Corrente_Poupanca(){
+		
+	}
+	public void cadastroBD() {
+        contaCorrentePoupanca.conectar();
+        String sql = "INSERT INTO Contas("
+            + "NumeroConta,"
+            + "Nome,"
+            + "Saldo,"
+            + "Senha,"
+            + "Tipo"
+            + ") VALUES(?,?,?,?,?)"
+            +";";
+
+
+        PreparedStatement prepare = contaCorrentePoupanca.criarPreparedStatement(sql);
+
+        try{
+            prepare.setInt(1,getNumConta());
+            prepare.setString(2,getNome());
+            prepare.setFloat(3,getSaldo());
+            prepare.setString(4,getSenha());
+            prepare.setInt(5,getTipo());
+            prepare.executeUpdate();
+            System.out.println("Conta cadastrada com sucesso! ");
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("Erro ao Cadastrar");
+        }finally{
+            if(prepare != null){
+                try {
+                    prepare.close();
+                } catch (SQLException ex) {
+                    System.out.println("Erro ao fechar o banco");
+                }
+            }
+        }
+        contaCorrentePoupanca.desconectar();
+    }    
+	
+	
 }
