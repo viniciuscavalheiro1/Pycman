@@ -12,7 +12,6 @@ public class Gerente extends Usuario{
 		this.senha = senha;
 	}
 
-
 	public boolean validaLoginGerente() {
 		
 		for(Gerente c : br.com.sistemabancario.aplicacao.Application.gerentes) {
