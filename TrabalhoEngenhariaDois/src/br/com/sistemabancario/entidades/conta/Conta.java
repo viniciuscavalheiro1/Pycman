@@ -2,14 +2,12 @@ package br.com.sistemabancario.entidades.conta;
 
 public class Conta {
 
-	 protected String numConta;
-	 protected String nome;
-	 protected float saldo;
-	 protected String senhaCad;
-	 protected int tipo;
+	 private String numConta;
+	 private String nome;
+	 private float saldo;
+	 private String senhaCad;
+	 private int tipo;
 	 
-	 
-	
 	public Conta(String numConta, String nome, String senhaCad, int tipo) {
 		this.numConta = numConta;
 		this.nome = nome;
@@ -17,12 +15,44 @@ public class Conta {
 		this.senhaCad = senhaCad;
 		this.tipo = tipo;
 	}
+	 	
+	public String getNumConta() {
+		return numConta;
+	}
 
+	public void setNumConta(String numConta) {
+		this.numConta = numConta;
+	}
 
+	public String getNome() {
+		return nome;
+	}
 
-	@Override
-	public String toString() {
-		
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getSenhaCad() {
+		return senhaCad;
+	}
+
+	public void setSenhaCad(String senhaCad) {
+		this.senhaCad = senhaCad;
+	}
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+	public float getSaldo() {
+		return saldo;
+	}
+	
+	public String mensagemDeArmazenar() {
 		return  tipo + 
 				 " " +
 				 numConta +
@@ -31,6 +61,12 @@ public class Conta {
 				 " " +
 				 senhaCad;
 	}
+
+	@Override
+	public String toString() {
+		return "Tipo da Conta: "+ getTipo() + ", Numero da conta: " + getNumConta() + ", Nome do Titular: " + getNome() + String.format(", Saldo: %.2f", getSaldo())+ " R$";
+	}
+	
 	
 	
 }
