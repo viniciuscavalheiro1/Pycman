@@ -6,7 +6,7 @@ public class Menus {
 
 	static Scanner sc = new Scanner(System.in);
 	
-	public  static int menuGerente() {
+	public static int menuGerente() {
         System.out.println("\n ------> 1 - Cadastrar ");
         System.out.println(" ------> 2 - Remover            ");
         System.out.println(" ------> 3 - Atualizar          ");
@@ -15,7 +15,7 @@ public class Menus {
         return sc.nextInt();
 	}
 	
-	public  static int tipoConta() {
+	public static int tipoConta() {
         System.out.println("\nInforme tipo da conta: ");
         System.out.println(" ------> 1 - Conta Normal");
         System.out.println(" ------> 2 - Conta Poupanca");
@@ -25,7 +25,7 @@ public class Menus {
         return  sc.nextInt();
 	}
 	
-	 public  static int menuCliente(){
+	 public static int menuCliente(){
          System.out.println("\n ------> 1 - Sacar");
          System.out.println(" ------> 2 - Transferencia");
          System.out.println(" ------> 3 - Depositar");
@@ -38,5 +38,18 @@ public class Menus {
           System.out.println("\n ------> n 1 - Listar todas as contas      ");
           System.out.println(" ------> 2 - Mostrar uma conta especifica ");
       }  
+	  
+	  public static int menuAlterarDados() {
+		  System.out.println("\n ------> 1 - Alterar todos os Dados      ");
+          System.out.println(" ------> 2 - Alterar dado Especifico ");
+          return sc.nextInt();
+	  }
+	  
+	  public static int menuDadoEspecifico() {
+		  System.out.println("\n ------> 1 - Numero da Conta      ");
+          System.out.println(" ------> 2 - Nome do Titular ");
+          System.out.println(" ------> 3 - Senha    ");          
+          return sc.nextInt();
+	  }
 	  
 }
