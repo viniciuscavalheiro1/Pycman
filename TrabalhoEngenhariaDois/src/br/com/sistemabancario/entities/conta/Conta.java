@@ -4,16 +4,14 @@ public class Conta {
 
 	private String numConta;
 	private String nome;
-	private float saldo;
 	private String senhaCad;
 	private int tipo;
-	//Para que esse int tipo
-	 
-	Conta(String numConta, String nome, String senhaCad) {
+		 
+	Conta(String numConta, String nome, String senhaCad, int tipo) {
 		this.numConta = numConta;
 		this.nome = nome;
-		this.saldo = 0;
 		this.senhaCad = senhaCad;
+		this.tipo = tipo;
 	}
 	 
 		  
@@ -34,14 +32,6 @@ public class Conta {
 		this.nome = nome;
 	}
 
-	public float getSaldo() {
-		return saldo;
-	}
-
-	public void setSaldo(float saldo) {
-		this.saldo = saldo;
-	}
-
 	public String getSenhaCad() {
 		return senhaCad;
 	}
@@ -49,21 +39,37 @@ public class Conta {
 	public void setSenhaCad(String senhaCad) {
 		this.senhaCad = senhaCad;
 	}
-
-	public int getTipo() {
+	
+	public int get_tipo() {
 		return tipo;
 	}
-
-	public void setTipo(int tipo) {
+	
+	public void set_tipo(int tipo) {
 		this.tipo = tipo;
 	}
+	
+	public boolean valida_saque(float saldo, float valor) {
+		if (valor > saldo) {
+			return false;
+		}
+		return true;
+	}
 
-	@Override
-	public String toString() {
-		
+	public String mensagemDeArmazenar() {
 		return  tipo + 
 				 " " +
 				 numConta +
+				 " " +
+				 nome +
+				 " " +
+				 senhaCad;
+	}
+	
+	
+	@Override
+	public String toString() {
+		
+		return numConta +
 				 " " +
 				 nome +
 				 " " +
