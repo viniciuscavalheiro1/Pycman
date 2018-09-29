@@ -18,14 +18,14 @@ public class Application {
 		
 		Locale.setDefault(Locale.US);
 		
-		// Lê o arquivo com todas as contas do banco
+		// LÃª o arquivo com todas as contas do banco
 		br.com.sistemabancario.aplicacao.funcoes.Funcoes.lerArquivos();
 		
 
 		
 		System.out.println("-------------------------------------");
 		System.out.println();
-		System.out.println("    Sistema gerenciador Bancário");
+		System.out.println("    Sistema gerenciador Bancï¿½rio");
 		System.out.println();
 		System.out.println("-------------------------------------");
 		
@@ -100,12 +100,12 @@ public class Application {
             	case 2:
             		break; 
             	default:
-            		System.out.println("ATENCAO: Opcao Inválida! ");
+            		System.out.println("ATENCAO: Opcao Invï¿½lida! ");
             		break;
             }
         }while(opcao != 0);
 		
-		// Ao encerrar o programa todas as contas são armazenadas
+		// Ao encerrar o programa todas as contas sï¿½o armazenadas
 		br.com.sistemabancario.aplicacao.funcoes.Funcoes.armazenarArquivo();		
 		sc.close();
 	}
