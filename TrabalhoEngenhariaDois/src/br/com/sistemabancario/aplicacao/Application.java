@@ -46,7 +46,7 @@ public class Application {
             switch(opcao) {
             
             	case 0:
-            		System.out.println("Encerrando o programa...");
+            		System.out.println("Programa encerrado");
             		break;
             	case 1:
             		System.out.println("-------------------------------------");
@@ -68,8 +68,7 @@ public class Application {
 	            			while(subOp != 0) {
 	            				 subOp = br.com.sistemabancario.aplicacao.funcoes.Menus.menuGerente();
 	            				switch(subOp) {
-	            					case 0:
-	            						System.out.println("Saindo da conta...");	  
+	            					case 0:	            						  
 	            						break;
 	            					case 1:
 	            						int tipo = br.com.sistemabancario.aplicacao.funcoes.Menus.tipoConta();
@@ -84,8 +83,32 @@ public class Application {
                                         break;
 	            					case 2:
 	            						System.out.println("Informe o numero da conta que deseja remover: ");
-	            						//rm = buscarConta();
-	            						//contas.remove(rm);
+	            						sc.nextLine();
+	            						String str = sc.nextLine();
+	            						int rm = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(str);
+	            						if(rm != (-1)) {
+	            							System.out.println("Conta removida!");
+	            							contas.remove(rm);
+	            						}else
+	            							System.out.println("Conta nao encontrada!");
+	            						break;
+	            					case 3:
+	            						
+	            						int op = br.com.sistemabancario.aplicacao.funcoes.Menus.menuAlterarDados();
+	            						System.out.println("Informe o numero da conta que deseja fazer alteracoes: ");
+	            						sc.nextLine();
+	            						str = sc.nextLine();
+	            						int indice = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(str);
+	            						Conta objc = br.com.sistemabancario.aplicacao.Application.contas.get(indice);
+	            						if(op == 1)
+	            							br.com.sistemabancario.aplicacao.funcoes.AlterarDadosConta.alterarDados(objc);
+	            						else {
+	            							int op2 = br.com.sistemabancario.aplicacao.funcoes.Menus.menuDadoEspecifico();
+	            							br.com.sistemabancario.aplicacao.funcoes.AlterarDadosConta.alterarDadoEspecifico(op2, objc);
+	            						}
+	            						break;
+	            					case 4:
+	            						br.com.sistemabancario.aplicacao.funcoes.Funcoes.exibirContas();
 	            						break;
 	            				}
 	            			}
@@ -99,6 +122,7 @@ public class Application {
             		break;
             	case 2:
             		break; 
+            		
             	default:
             		System.out.println("ATENCAO: Opcao Inválida! ");
             		break;

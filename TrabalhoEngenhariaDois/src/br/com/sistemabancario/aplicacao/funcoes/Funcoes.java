@@ -55,7 +55,7 @@ public class Funcoes {
 			 
 			 try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
 				 for(Conta c: br.com.sistemabancario.aplicacao.Application.contas) {				 
-					 String str = c.toString();
+					 String str = c.mensagemDeArmazenar();
 					 bw.write(str);	
 					 bw.newLine();
 				 }
@@ -85,4 +85,19 @@ public class Funcoes {
 		br.com.sistemabancario.aplicacao.Application.gerentes.add(g);
 	}
 	
+	public static int buscarConta(String numConta) {
+		for(Conta c : br.com.sistemabancario.aplicacao.Application.contas) {
+			if(numConta.equals(c.getNumConta())) {
+				return br.com.sistemabancario.aplicacao.Application.contas.indexOf(c);
+			}
+		}
+		return -1;		
+	}
+	
+	public static void exibirContas() {
+		
+		for(Conta c : br.com.sistemabancario.aplicacao.Application.contas) {
+			System.out.println(c.toString());
+		}
+	}
 }
