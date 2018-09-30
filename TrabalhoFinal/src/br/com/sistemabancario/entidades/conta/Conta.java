@@ -1,17 +1,21 @@
 package br.com.sistemabancario.entidades.conta;
 
+import br.com.sistemabancario.entidades.auxiliares.Tipo;
+
 public class Conta {
 
 	private String numConta;
 	private String nome;
 	private String senhaCad;
-	private int tipo;
+	private Tipo tipo;
+	private float saldo;
 		 
-	Conta(String numConta, String nome, String senhaCad, int tipo) {
+	Conta(String numConta, String nome, String senhaCad, Tipo tipo, float saldo) {
 		this.numConta = numConta;
 		this.nome = nome;
 		this.senhaCad = senhaCad;
 		this.tipo = tipo;
+		this.saldo = saldo;
 	}
 		  
     public String getNumConta() {
@@ -39,49 +43,65 @@ public class Conta {
 		this.senhaCad = senhaCad;
 	}
 	
-	public int get_tipo() {
+	public Tipo get_tipo() {
 		return tipo;
 	}
-	
-	public void set_tipo(int tipo) {
-		this.tipo = tipo;
+		
+	public float getSaldo() {
+		return saldo;
 	}
 	
-	public boolean valida_saque(float saldo, float valor) {
+	public void sacar(float valor) {
+		
+		boolean flag = valida_transacao(this.saldo, valor);
+		if(flag)
+			this.saldo -= valor;
+	}
+	
+	public void depositar(float valor) {
+		this.saldo += valor;
+	}
+	
+	public void transferir(Conta c, float valor) {
+		boolean flag = valida_transacao(this.saldo, valor);
+		
+		if(flag) {
+			c.depositar(valor);
+			sacar(valor);
+		}
+	}
+	
+	public boolean valida_transacao(float saldo, float valor) {
 		if (valor > saldo) {
 			return false;
 		}
 		return true;
 	}
 	
-	public String tipoConta() {
-		if (get_tipo() == 1) {
-			return "Corrente";
-		}else if(get_tipo() == 2) {
-			return "Poupança";
-		}
-		return "Corrente/Poupança";
-	}
-
+	
 	public String mensagemDeArmazenar() {
 		return  tipo + 
-				 tipoConta() +
+				 " " +
 				 numConta +
 				 " " +
 				 nome +
 				 " " +
-				 senhaCad;
-	}
-	
-	
+				senhaCad +
+				" " +
+				saldo; 
+				
+	}		
 	@Override
 	public String toString() {
-		
-		return numConta +
-				 " " +
-				 nome +
-				 " " +
-				 senhaCad;
+		return "Tipo da Conta: "+
+				tipo +
+				", Numero da conta: " +
+				getNumConta() +
+				", Nome do Titular: " +
+				getNome() +
+				", Saldo: " +
+				getSaldo( ) +
+				" R$";
 	}
 	
 	

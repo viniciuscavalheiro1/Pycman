@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import br.com.sistemabancario.entidades.auxiliares.Tipo;
 import br.com.sistemabancario.entidades.conta.Conta;
+import br.com.sistemabancario.entidades.usuarios.Cliente;
 import br.com.sistemabancario.entidades.usuarios.Gerente;
 
 public class Application {
@@ -12,7 +13,7 @@ public class Application {
 	static Scanner sc = new Scanner(System.in);
 	public static ArrayList<Conta> contas = new ArrayList<>();
 	public static ArrayList<Gerente> gerentes = new ArrayList<>();
-	public static ArrayList<Gerente> clientes = new ArrayList<>();
+	public static ArrayList<Cliente> clientes = new ArrayList<>();
 
 	public static void main(String[] args) {
 		
@@ -20,7 +21,7 @@ public class Application {
 		
 		System.out.println("-------------------------------------");
 		System.out.println();
-		System.out.println("    Sistema gerenciador Banc�rio");
+		System.out.println("    Sistema gerenciador Bancario");
 		System.out.println();
 		System.out.println("-------------------------------------");
 		
@@ -53,10 +54,14 @@ public class Application {
 	            		System.out.print("Usuario: ");
 	            		String usuario = sc.next();
 	            		System.out.print("Senha: ");
-	            		String senha = sc.next();
+	            		String senha = sc.next();	            		
 	            		
 	            		Gerente gerente = new Gerente(usuario, senha);
-	            		flag = gerente.validaLoginGerente();
+	            		gerente = gerente.validaLoginCliente();
+	            		
+	            		if(gerente != null) {
+	            			flag = true;	            			
+	            		}	
 	   
 	            		if(flag) {           			
 	            			int subOp = 1;
@@ -82,8 +87,8 @@ public class Application {
 	            						System.out.println("Informe o numero da conta que deseja remover: ");
 	            						sc.nextLine();
 	            						String str = sc.nextLine();
-	            						int rm = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(str);
-	            						if(rm != (-1)) {
+	            						Conta rm = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(str);
+	            						if(rm != null) {
 	            							System.out.println("Conta removida!");
 	            							contas.remove(rm);
 	            						}else
@@ -94,13 +99,12 @@ public class Application {
 	            						int op = br.com.sistemabancario.aplicacao.funcoes.Menus.menuAlterarDados();
 	            						System.out.println("Informe o numero da conta que deseja fazer alteracoes: ");
 	            						str = sc.nextLine();
-	            						int indice = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(str);
-	            						Conta objc = br.com.sistemabancario.aplicacao.Application.contas.get(indice);
+	            						Conta objeto = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(str);
 	            						if(op == 1)
-	            							br.com.sistemabancario.aplicacao.funcoes.AlterarDadosConta.alterarDados(objc);
+	            							br.com.sistemabancario.aplicacao.funcoes.AlterarDadosConta.alterarDados(objeto);
 	            						else {
 	            							int op2 = br.com.sistemabancario.aplicacao.funcoes.Menus.menuDadoEspecifico();
-	            							br.com.sistemabancario.aplicacao.funcoes.AlterarDadosConta.alterarDadoEspecifico(op2, objc);
+	            							br.com.sistemabancario.aplicacao.funcoes.AlterarDadosConta.alterarDadoEspecifico(op2, objeto);
 	            						}
 	            						break;
 	            						
@@ -118,10 +122,62 @@ public class Application {
             		
             		break;
             	case 2:
+            		
+            		System.out.println("-------------------------------------");
+            		System.out.println("          Login do Cliente: ");
+            		System.out.println("-------------------------------------");            		
+            		flag = false;
+            		
+            		do {
+            			System.out.print("Numero da Conta: ");
+	            		String usuario = sc.next();
+	            		System.out.print("Senha: ");
+	            		String senha = sc.next();
+	            		
+	            		Conta conta = null;
+	            		Cliente cliente = new Cliente(usuario, senha);
+	            		cliente = cliente.validaLoginCliente();
+	            		
+	            		if(cliente != null) {
+	            			flag = true;
+	            			conta = cliente.getC();
+	            		}	            			
+	            		
+	            		if(flag) {           			
+	            			int subOp = 1;
+	            			while(subOp != 0) {
+	            				 subOp = br.com.sistemabancario.aplicacao.funcoes.Menus.menuCliente();
+	            				switch(subOp) {
+	            					case 0: 
+	            						break;
+	            					case 1:
+	            						System.out.println("Informe o valor que deseja sacar: ");
+	            						conta.sacar(sc.nextFloat());         							            							         						
+                                        break;
+	            					case 2:
+	            						System.out.println("Informe o valor que deseja depositar: ");
+	            						conta.depositar(sc.nextFloat());
+	            						break;	            						
+	            					case 3:	
+	            						sc.nextLine();
+	            						System.out.println("Informe o numero da conta para qual deseja transferir: ");
+	            						String numero_Conta = sc.nextLine();
+	            						Conta c = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(numero_Conta);
+	            						System.out.println("Informe o valor que deseja transferir: ");
+	            						conta.transferir(c, sc.nextFloat());	            						
+	            						break;	            						
+	            				}
+	            			}
+         			            			
+	            		}else {
+	            			System.out.println("Usuario nao encontrado! ");
+	            		}
+            		}while(!flag);            		
+	            		        		
             		break; 
             		
             	default:
-            		System.out.println("ATENCAO: Opcao Inválida! ");
+            		System.out.println("ATENCAO: Opcao Invalida! ");
             		break;
             }
         }while(opcao != 0);

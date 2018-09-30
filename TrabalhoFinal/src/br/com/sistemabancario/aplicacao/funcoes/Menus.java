@@ -35,10 +35,10 @@ public class Menus {
 	
 	 public static int menuCliente(){
          System.out.println("\n ------> 1 - Sacar");
-         System.out.println(" ------> 2 - Transferencia");
-         System.out.println(" ------> 3 - Depositar");
-         System.out.println(" ------> 4 - Sair");
-         System.out.println("OPCAO: ");
+         System.out.println(" ------> 2 - Depositar");
+         System.out.println(" ------> 3 - Transferir");
+         System.out.println(" ------> 0 - Sair");
+         System.out.print("OPCAO: ");
          return sc.nextInt();
      }
 	 

@@ -7,6 +7,7 @@ import br.com.sistemabancario.entidades.conta.Conta;
 public class AlterarDadosConta {
 
 	static Scanner sc = new Scanner(System.in);
+	
 	public static void alterarDados(Conta c) {
 		
 		System.out.println("Informe o novo numero da conta: ");
