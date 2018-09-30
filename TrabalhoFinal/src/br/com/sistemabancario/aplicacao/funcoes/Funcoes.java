@@ -82,7 +82,7 @@ public class Funcoes {
 			 
 			Cliente c = new Cliente(numConta, senhaCad);
 		  if(tipoConta.equals(Tipo.CONTA_POUPANCA)) {
-			  Conta_Poupanca conta = new Conta_Poupanca(numConta, nome, senhaCad, Tipo.CONTA_POUPANCA, saldo);	
+			  Conta_Poupanca conta = new Conta_Poupanca(numConta, nome, senhaCad, Tipo.CONTA_POUPANCA);	
 			  br.com.sistemabancario.aplicacao.Application.contas.add(conta);
 			  c.setC(conta);
 		  }else if (tipoConta.equals(Tipo.CONTA_CORRENTE)){

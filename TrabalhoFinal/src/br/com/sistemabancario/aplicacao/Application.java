@@ -20,7 +20,7 @@ public class Application {
 		
 		System.out.println("-------------------------------------");
 		System.out.println();
-		System.out.println("    Sistema gerenciador Bancário");
+		System.out.println("    Sistema gerenciador Bancï¿½rio");
 		System.out.println();
 		System.out.println("-------------------------------------");
 		
@@ -45,7 +45,7 @@ public class Application {
             		break;
             	case 1:
             		System.out.println("-------------------------------------");
-            		System.out.println("          Login do Gerente: ");
+            		System.out.println("          Login do Gerente:          ");
             		System.out.println("-------------------------------------");
             		boolean flag = false;
             		
@@ -121,7 +121,7 @@ public class Application {
             		break; 
             		
             	default:
-            		System.out.println("ATENCAO: Opcao Inválida! ");
+            		System.out.println("ATENCAO: Opcao InvÃ¡lida! ");
             		break;
             }
         }while(opcao != 0);

@@ -1,27 +1,23 @@
 package br.com.sistemabancario.entidades.conta;
 
-import br.com.sistemabancario.entidades.auxiliares.Tipo;
-
 public class Conta {
 
-	 private String numConta;
-	 private String nome;
-	 private float saldo;
-	 private String senhaCad;
-	 private Tipo tipo;
-	 
-		 	
-	public Conta(String numConta, String nome,String senhaCad, Tipo tipo, float saldo) {
+	private String numConta;
+	private String nome;
+	private String senhaCad;
+	private int tipo;
+		 
+	Conta(String numConta, String nome, String senhaCad, int tipo) {
 		this.numConta = numConta;
 		this.nome = nome;
 		this.senhaCad = senhaCad;
 		this.tipo = tipo;
-		this.saldo = saldo;
 	}
-
-	public String getNumConta() {
+		  
+    public String getNumConta() {
 		return numConta;
 	}
+
 
 	public void setNumConta(String numConta) {
 		this.numConta = numConta;
@@ -42,48 +38,51 @@ public class Conta {
 	public void setSenhaCad(String senhaCad) {
 		this.senhaCad = senhaCad;
 	}
-
 	
-	public Tipo getTipo() {
+	public int get_tipo() {
 		return tipo;
 	}
-
-	public void setTipo(Tipo tipo) {
+	
+	public void set_tipo(int tipo) {
 		this.tipo = tipo;
 	}
-
-	public float getSaldo() {
-		return saldo;
+	
+	public boolean valida_saque(float saldo, float valor) {
+		if (valor > saldo) {
+			return false;
+		}
+		return true;
 	}
 	
+	public String tipoConta() {
+		if (get_tipo() == 1) {
+			return "Corrente";
+		}else if(get_tipo() == 2) {
+			return "Poupança";
+		}
+		return "Corrente/Poupança";
+	}
+
 	public String mensagemDeArmazenar() {
 		return  tipo + 
-				 " " +
+				 tipoConta() +
 				 numConta +
 				 " " +
 				 nome +
 				 " " +
-				senhaCad +
-				" " +
-				saldo;
+				 senhaCad;
 	}
-
-	public void depositar(float valor) {
-		this.saldo += valor;
-	}
+	
 	
 	@Override
 	public String toString() {
-		return "Tipo da Conta: "+
-				getTipo() +
-				", Numero da conta: " +
-				getNumConta() +
-				", Nome do Titular: " +
-				getNome() +
-				String.format(", Saldo: %.2f", getSaldo()) +
-				" R$";
+		
+		return numConta +
+				 " " +
+				 nome +
+				 " " +
+				 senhaCad;
 	}
-	
 	
 	
 }
