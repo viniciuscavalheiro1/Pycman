@@ -18,13 +18,19 @@ public class Cliente extends Usuario {
 		this.c = c;
 	}
 
-	public boolean validaLoginCliente() {
-		
-		for(Gerente c : br.com.sistemabancario.aplicacao.Application.clientes) {
-			if(this.usuario.equals(c.usuario) && this.senha.equals(c.senha))
-				return true;
+	public  Cliente validaLoginCliente() {
+		for(Cliente c : br.com.sistemabancario.aplicacao.Application.clientes) {
+			if(usuario.equals(c.getUsuario()) && senha.equals(c.getSenha())) {
+				return c;
+			}
 		}
-		return false;
+		return null;		
+	}
+	
+	public String mensagemDeArmazenar() {
+		return usuario +
+				" " +
+				senha;
 	}
 	
 }

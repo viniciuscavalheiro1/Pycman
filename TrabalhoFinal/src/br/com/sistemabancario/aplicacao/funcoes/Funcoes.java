@@ -16,9 +16,9 @@ import br.com.sistemabancario.entidades.usuarios.Gerente;
 
 public class Funcoes {
 
-	static File contas = new File("C:\\Users\\PC\\eclipse-workspace\\TrabalhoEngenhariaDois\\Banco de Dados\\CONTAS.txt");
-	static File gerentes = new File("C:\\Users\\PC\\eclipse-workspace\\TrabalhoEngenhariaDois\\Banco de Dados\\GERENTES.txt");
-	static File clientes = new File("C:\\Users\\PC\\eclipse-workspace\\TrabalhoEngenhariaDois\\Banco de Dados\\CLIENTES.txt");
+	static File contas = new File("C:\\Users\\PC\\Desktop\\trab\\TrabalhoFinal\\Banco de Dados\\CONTAS.txt");
+	static File gerentes = new File("C:\\Users\\PC\\Desktop\\trab\\TrabalhoFinal\\Banco de Dados\\GERENTES.txt");
+	static File clientes = new File("C:\\Users\\PC\\Desktop\\trab\\TrabalhoFinal\\Banco de Dados\\CLIENTES.txt");
 	static Scanner scanner = null;
 		
 	public static void lerArquivos() {
@@ -64,11 +64,12 @@ public class Funcoes {
 		
 		public static void armazenarArquivo() {
 			 
-			 String path = "C:\\Users\\PC\\eclipse-workspace\\TrabalhoEngenhariaDois\\Banco de Dados\\CONTAS.txt";
-			 
+			 String path = "C:\\Users\\PC\\Desktop\\trab\\TrabalhoFinal\\Banco de Dados\\CONTAS.txt";
+			 String str;
 			 try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
-				 for(Conta c: br.com.sistemabancario.aplicacao.Application.contas) {				 
-					 String str = c.mensagemDeArmazenar();
+				 for(Conta c: br.com.sistemabancario.aplicacao.Application.contas) {	
+					 
+					 str = c.mensagemDeArmazenar();										  					
 					 bw.write(str);	
 					 bw.newLine();
 				 }
@@ -76,13 +77,28 @@ public class Funcoes {
 			 }catch(IOException e) {
 				 e.printStackTrace();
 			 }
+			 
+			path = "C:\\Users\\PC\\Desktop\\trab\\TrabalhoFinal\\Banco de Dados\\CLIENTES.txt";
+			try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
+				 for(Cliente c: br.com.sistemabancario.aplicacao.Application.clientes) {	
+					 
+					 str = c.mensagemDeArmazenar();										  					
+					 bw.write(str);	
+					 bw.newLine();
+				 }
+					 		 
+			 }catch(IOException e) {
+				 e.printStackTrace();
+			 }
+			 
 		}
 		
 	public static void criarConta(Tipo tipoConta, String numConta, String nome, String senhaCad, float saldo) { 			 
 			 
 			Cliente c = new Cliente(numConta, senhaCad);
+			br.com.sistemabancario.aplicacao.Application.clientes.add(c);
 		  if(tipoConta.equals(Tipo.CONTA_POUPANCA)) {
-			  Conta_Poupanca conta = new Conta_Poupanca(numConta, nome, senhaCad, Tipo.CONTA_POUPANCA);	
+			  Conta_Poupanca conta = new Conta_Poupanca(numConta, nome, senhaCad, Tipo.CONTA_POUPANCA, saldo);	
 			  br.com.sistemabancario.aplicacao.Application.contas.add(conta);
 			  c.setC(conta);
 		  }else if (tipoConta.equals(Tipo.CONTA_CORRENTE)){
@@ -102,15 +118,16 @@ public class Funcoes {
 		br.com.sistemabancario.aplicacao.Application.gerentes.add(g);
 	}
 	
-	public static int buscarConta(String numConta) {
+	public static Conta buscarConta(String numConta) {
 		for(Conta c : br.com.sistemabancario.aplicacao.Application.contas) {
 			if(numConta.equals(c.getNumConta())) {
-				return br.com.sistemabancario.aplicacao.Application.contas.indexOf(c);
+				return c;
 			}
 		}
-		return -1;		
+		return null;		
 	}
 	
+		
 	public static void exibirContas() {
 		
 		for(Conta c : br.com.sistemabancario.aplicacao.Application.contas) {
