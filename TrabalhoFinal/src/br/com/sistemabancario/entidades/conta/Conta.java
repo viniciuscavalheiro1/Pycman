@@ -51,31 +51,51 @@ public class Conta {
 		return saldo;
 	}
 	
-	public void sacar(float valor) {
+	public int sacar(float valor) {
 		
 		boolean flag = valida_transacao(this.saldo, valor);
-		if(flag)
+		if(flag) {
 			this.saldo -= valor;
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 	
-	public void depositar(float valor) {
-		this.saldo += valor;
+	public int depositar(float valor) {
+		if(validaDeposito(valor)) {
+			this.saldo += valor;
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 	
-	public void transferir(Conta c, float valor) {
+	public int transferir(Conta c, float valor) {
 		boolean flag = valida_transacao(this.saldo, valor);
 		
 		if(flag) {
 			c.depositar(valor);
 			sacar(valor);
+			return 1;
+		}else { 
+			return 0;
 		}
 	}
 	
 	public boolean valida_transacao(float saldo, float valor) {
-		if (valor > saldo) {
+		if (valor > saldo || valor <= 0 || valor >= 500000) {
 			return false;
 		}
 		return true;
+	}
+	
+	public boolean validaDeposito(float valor) {
+		if (valor <= 0 || valor >= 1000) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	
