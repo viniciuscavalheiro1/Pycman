@@ -16,9 +16,9 @@ import br.com.sistemabancario.entidades.usuarios.Gerente;
 
 public class Funcoes {
 
-	static File contas = new File("C:\\Users\\PC\\Desktop\\trab\\TrabalhoFinal\\Banco de Dados\\CONTAS.txt");
-	static File gerentes = new File("C:\\Users\\PC\\Desktop\\trab\\TrabalhoFinal\\Banco de Dados\\GERENTES.txt");
-	static File clientes = new File("C:\\Users\\PC\\Desktop\\trab\\TrabalhoFinal\\Banco de Dados\\CLIENTES.txt");
+	static File contas = new File("/home/vinicius/Documentos/dev/Pycman/TrabalhoFinal/Banco de Dados/CONTAS.txt");
+	static File gerentes = new File("/home/vinicius/Documentos/dev/Pycman/TrabalhoFinal/Banco de Dados/GERENTES.txt");
+	static File clientes = new File("/home/vinicius/Documentos/dev/Pycman/TrabalhoFinal/Banco de Dados/CLIENTES.txt");
 	static Scanner scanner = null;
 		
 	public static void lerArquivos() {
@@ -64,7 +64,7 @@ public class Funcoes {
 		
 		public static void armazenarArquivo() {
 			 
-			 String path = "C:\\Users\\PC\\Desktop\\trab\\TrabalhoFinal\\Banco de Dados\\CONTAS.txt";
+			 String path = "/home/vinicius/Documentos/dev/Pycman/TrabalhoFinal/Banco de Dados/CONTAS.txt";
 			 String str;
 			 try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
 				 for(Conta c: br.com.sistemabancario.aplicacao.Application.contas) {	
@@ -78,7 +78,7 @@ public class Funcoes {
 				 e.printStackTrace();
 			 }
 			 
-			path = "C:\\Users\\PC\\Desktop\\trab\\TrabalhoFinal\\Banco de Dados\\CLIENTES.txt";
+			path = "/home/vinicius/Documentos/dev/Pycman/TrabalhoFinal/Banco de Dados/CLIENTES.txt";
 			try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
 				 for(Cliente c: br.com.sistemabancario.aplicacao.Application.clientes) {	
 					 
@@ -93,25 +93,29 @@ public class Funcoes {
 			 
 		}
 		
-	public static void criarConta(Tipo tipoConta, String numConta, String nome, String senhaCad, float saldo) { 			 
+	public static int criarConta(Tipo tipoConta, String numConta, String nome, String senhaCad, float saldo) { 			 
 			 
-			Cliente c = new Cliente(numConta, senhaCad);
-			br.com.sistemabancario.aplicacao.Application.clientes.add(c);
-		  if(tipoConta.equals(Tipo.CONTA_POUPANCA)) {
-			  Conta_Poupanca conta = new Conta_Poupanca(numConta, nome, senhaCad, Tipo.CONTA_POUPANCA, saldo);	
-			  br.com.sistemabancario.aplicacao.Application.contas.add(conta);
-			  c.setC(conta);
-		  }else if (tipoConta.equals(Tipo.CONTA_CORRENTE)){
-			  Conta_Corrente conta = new Conta_Corrente(numConta, nome, senhaCad, Tipo.CONTA_CORRENTE, saldo);		
-			  br.com.sistemabancario.aplicacao.Application.contas.add(conta);
-			  c.setC(conta);
-		  }else {
-			  Conta_Corrente_Poupanca conta = new Conta_Corrente_Poupanca(numConta,  nome,  senhaCad, Tipo.CONTA_CORRENTE_POUPANCA, saldo);
-			  br.com.sistemabancario.aplicacao.Application.contas.add(conta);
-			  c.setC(conta);
-		  }	
-	
-	  }	 
+		Cliente c = new Cliente(numConta, senhaCad);
+		br.com.sistemabancario.aplicacao.Application.clientes.add(c);
+		if(tipoConta.equals(Tipo.CONTA_POUPANCA)) {
+			Conta_Poupanca conta = new Conta_Poupanca(numConta, nome, senhaCad, Tipo.CONTA_POUPANCA, saldo);	
+			br.com.sistemabancario.aplicacao.Application.contas.add(conta);
+			c.setC(conta);
+			return 1;
+	  	}else if (tipoConta.equals(Tipo.CONTA_CORRENTE)){
+			Conta_Corrente conta = new Conta_Corrente(numConta, nome, senhaCad, Tipo.CONTA_CORRENTE, saldo);		
+			br.com.sistemabancario.aplicacao.Application.contas.add(conta);
+			c.setC(conta);
+			return 1;
+		}else if (tipoConta.equals(Tipo.CONTA_CORRENTE_POUPANCA)){
+			Conta_Corrente_Poupanca sconta = new Conta_Corrente_Poupanca(numConta,  nome,  senhaCad, Tipo.CONTA_CORRENTE_POUPANCA, saldo);
+			br.com.sistemabancario.aplicacao.Application.contas.add(sconta);
+			c.setC(sconta);
+			return 1;
+		}
+		
+		return 0;
+	}	 
 		
 	public static void criarGerentes(String user,String senha) {
 		Gerente g = new Gerente(user, senha);

@@ -20,9 +20,9 @@ public class Application {
 		br.com.sistemabancario.aplicacao.funcoes.Funcoes.lerArquivos();		
 		
 		System.out.println("-------------------------------------");
-		System.out.println();
-		System.out.println("    Sistema gerenciador Bancario");
-		System.out.println();
+		System.out.println(										  );
+		System.out.println("    Sistema gerenciador Bancario"     );
+		System.out.println(										  );
 		System.out.println("-------------------------------------");
 		
 		int opcao = 0;

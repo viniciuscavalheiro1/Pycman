@@ -10,7 +10,7 @@ public class Conta {
 	private Tipo tipo;
 	private float saldo;
 		 
-	Conta(String numConta, String nome, String senhaCad, Tipo tipo, float saldo) {
+	public Conta(String numConta, String nome, String senhaCad, Tipo tipo, float saldo) {
 		this.numConta = numConta;
 		this.nome = nome;
 		this.senhaCad = senhaCad;
@@ -53,8 +53,7 @@ public class Conta {
 	
 	public int sacar(float valor) {
 		
-		boolean flag = valida_transacao(this.saldo, valor);
-		if(flag) {
+		if(valida_transacao(this.saldo, valor)) {
 			this.saldo -= valor;
 			return 1;
 		}else {
@@ -91,7 +90,7 @@ public class Conta {
 	}
 	
 	public boolean validaDeposito(float valor) {
-		if (valor <= 0 || valor >= 1000) {
+		if (valor > 0 && valor <= 50000) {
 			return true;
 		}else {
 			return false;

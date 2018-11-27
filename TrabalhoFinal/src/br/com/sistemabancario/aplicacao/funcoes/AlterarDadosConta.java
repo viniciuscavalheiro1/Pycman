@@ -27,10 +27,10 @@ public class AlterarDadosConta {
 			c.setNumConta(sc.nextLine());
 		}else if(opcao == 2) {
 			System.out.println("Informe o nome do Titular da conta: ");
-			c.setNumConta(sc.nextLine());
+			c.setNome(sc.nextLine());
 		}else if (opcao == 3){
-			System.out.println("Informe o nome do Titular da conta: ");
-			c.setNumConta(sc.nextLine());
+			System.out.println("Informe a nova senha: ");
+			c.setSenhaCad(sc.nextLine());
 		}else {
 			System.out.println("Opcao nao encontrada!");
 		}

@@ -42,12 +42,12 @@ class Conta_Corrente_PoupancaTest {
 
 	@Test
 	void testDepositarAcimaMedia() {
-		assertEquals(1, conta.depositar(200000));
+		assertEquals(0, conta.depositar(200000));
 	}
 	
 	@Test
 	void testDepositarValorMenor() {
-		assertEquals(1, conta.depositar(-300));
+		assertEquals(0, conta.depositar(-300));
 	}
 
 	@Test
@@ -69,10 +69,6 @@ class Conta_Corrente_PoupancaTest {
 	void testTransferenciaValorAcimaDoPermitido() {
 		assertEquals(0, conta.transferir(conta2, 500000));
 	}
-	
-	@Test
-
-
 	
 	
 }
