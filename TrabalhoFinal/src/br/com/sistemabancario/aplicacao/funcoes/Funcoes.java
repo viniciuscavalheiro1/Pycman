@@ -16,9 +16,9 @@ import br.com.sistemabancario.entidades.usuarios.Gerente;
 
 public class Funcoes {
 
-	static File contas = new File("/home/vinicius/Documentos/dev/Pycman/TrabalhoFinal/Banco de Dados/CONTAS.txt");
-	static File gerentes = new File("/home/vinicius/Documentos/dev/Pycman/TrabalhoFinal/Banco de Dados/GERENTES.txt");
-	static File clientes = new File("/home/vinicius/Documentos/dev/Pycman/TrabalhoFinal/Banco de Dados/CLIENTES.txt");
+	static File contas = new File("/home/vinicius/Documentos/Trabalho Engenharia II/Pycman/TrabalhoFinal/Banco de Dados/CONTAS.txt");
+	static File gerentes = new File("/home/vinicius/Documentos/Trabalho Engenharia II/Pycman/TrabalhoFinal/Banco de Dados/GERENTES.txt");
+	static File clientes = new File("/home/vinicius/Documentos/Trabalho Engenharia II/Pycman/TrabalhoFinal/Banco de Dados/CLIENTES.txt");
 	static Scanner scanner = null;
 		
 	public static void lerArquivos() {
@@ -64,7 +64,7 @@ public class Funcoes {
 		
 		public static void armazenarArquivo() {
 			 
-			 String path = "/home/vinicius/Documentos/dev/Pycman/TrabalhoFinal/Banco de Dados/CONTAS.txt";
+			 String path = "/home/vinicius/Documentos/Trabalho Engenharia II/Pycman/TrabalhoFinal/Banco de Dados/CONTAS.txt";
 			 String str;
 			 try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
 				 for(Conta c: br.com.sistemabancario.aplicacao.Application.contas) {	
@@ -78,7 +78,7 @@ public class Funcoes {
 				 e.printStackTrace();
 			 }
 			 
-			path = "/home/vinicius/Documentos/dev/Pycman/TrabalhoFinal/Banco de Dados/CLIENTES.txt";
+			path = "/home/vinicius/Documentos/Trabalho Engenharia II/Pycman/TrabalhoFinal/Banco de Dados/CLIENTES.txt";
 			try(BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
 				 for(Cliente c: br.com.sistemabancario.aplicacao.Application.clientes) {	
 					 

@@ -34,29 +34,33 @@ public class Menus {
 	}
 	
 	 public static int menuCliente(){
-         System.out.println("\n ------> 1 - Sacar");
-         System.out.println(" ------> 2 - Depositar");
+         System.out.println("\n ------> 1 - Sacar   ");
+         System.out.println(" ------> 2 - Depositar ");
          System.out.println(" ------> 3 - Transferir");
-         System.out.println(" ------> 0 - Sair");
-         System.out.print("OPCAO: ");
+         System.out.println(" ------> 4 - Extrato   ");
+         System.out.println(" ------> 0 - Sair      ");
+         System.out.print("OPCAO: "                   	);
          return sc.nextInt();
      }
 	 
 	  public static void MostrarDados(){
           System.out.println("\n ------> n 1 - Listar todas as contas      ");
           System.out.println(" ------> 2 - Mostrar uma conta especifica ");
+          System.out.println(" ------> 0 - Sair");
       }  
 	  
 	  public static int menuAlterarDados() {
 		  System.out.println("\n ------> 1 - Alterar todos os Dados      ");
           System.out.println(" ------> 2 - Alterar dado Especifico ");
+          System.out.println(" ------> 0 - Sair");
           return sc.nextInt();
 	  }
 	  
 	  public static int menuDadoEspecifico() {
 		  System.out.println("\n ------> 1 - Numero da Conta      ");
           System.out.println(" ------> 2 - Nome do Titular ");
-          System.out.println(" ------> 3 - Senha    ");          
+          System.out.println(" ------> 3 - Senha    ");    
+          System.out.println(" ------> 0 - Sair");
           return sc.nextInt();
 	  }
 	  

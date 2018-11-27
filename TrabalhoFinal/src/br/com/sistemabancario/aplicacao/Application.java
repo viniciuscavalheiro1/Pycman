@@ -1,5 +1,8 @@
 package br.com.sistemabancario.aplicacao;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,13 +18,14 @@ public class Application {
 	public static ArrayList<Gerente> gerentes = new ArrayList<>();
 	public static ArrayList<Cliente> clientes = new ArrayList<>();
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		br.com.sistemabancario.aplicacao.funcoes.Funcoes.lerArquivos();		
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		
 		System.out.println("-------------------------------------");
 		System.out.println(										  );
-		System.out.println("    Sistema gerenciador Bancario"     );
+		System.out.println("    Sistema gerenciador Bancario     ");
 		System.out.println(										  );
 		System.out.println("-------------------------------------");
 		
@@ -35,7 +39,7 @@ public class Application {
              
             try{
                 opcao = sc.nextInt();
-            }catch(Exception erro){
+            }catch(Exception erro){	
                 System.out.println("ATENCAO: Somente Numeros!");
             }
             
@@ -74,7 +78,7 @@ public class Application {
 	            						Tipo tipo = br.com.sistemabancario.aplicacao.funcoes.Menus.tipoConta();
 	            						sc.nextLine();
 	            						System.out.println("Numero da conta: ");
-	            						String numConta = sc.nextLine();
+	            						String numConta = in.readLine();
 	            						System.out.println("Nome do Cliente");
                                         String nome = sc.nextLine();
                                         System.out.println("Senha da Conta");
@@ -97,16 +101,25 @@ public class Application {
 	            						
 	            					case 3:	            						
 	            						int op = br.com.sistemabancario.aplicacao.funcoes.Menus.menuAlterarDados();
+	            						if (op == 0) {
+	            							break;
+	            						}
 	            						System.out.println("Informe o numero da conta que deseja fazer alteracoes: ");
-	            						str = sc.nextLine();
-	            						Conta objeto = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(str);
+	            						sc.nextLine();
+	            						String str2 = sc.nextLine();
+	          
+	            						Conta objeto = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(str2);
 	            						if(op == 1)
 	            							br.com.sistemabancario.aplicacao.funcoes.AlterarDadosConta.alterarDados(objeto);
-	            						else {
+	            						else if(op == 2){
 	            							int op2 = br.com.sistemabancario.aplicacao.funcoes.Menus.menuDadoEspecifico();
 	            							br.com.sistemabancario.aplicacao.funcoes.AlterarDadosConta.alterarDadoEspecifico(op2, objeto);
+	            						}else if(op == 0) {
+	            							break;
+	            						}else {
+	            							System.out.println("Operação Invalida!");
 	            						}
-	            						break;
+	            
 	            						
 	            					case 4:
 	            						br.com.sistemabancario.aplicacao.funcoes.Funcoes.exibirContas();
@@ -124,7 +137,7 @@ public class Application {
             	case 2:
             		
             		System.out.println("-------------------------------------");
-            		System.out.println("          Login do Cliente: ");
+            		System.out.println("          Login do Cliente:          ");
             		System.out.println("-------------------------------------");            		
             		flag = false;
             		
@@ -165,7 +178,18 @@ public class Application {
 	            						Conta c = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(numero_Conta);
 	            						System.out.println("Informe o valor que deseja transferir: ");
 	            						conta.transferir(c, sc.nextFloat());	            						
-	            						break;	            						
+	            						break;
+	            					case 4:
+	            						Conta c2 = br.com.sistemabancario.aplicacao.funcoes.Funcoes.buscarConta(usuario);
+	            						System.out.println("_______________________________________");
+	            						System.out.println("___________Extrato Conta ______________");
+	            						System.out.println("                                       ");
+	            						System.out.println("  Numero: " + c2.getNumConta()+"       ");
+	            						System.out.println("  Nome: " + c2.getNome()+"             ");
+	            						System.out.println("_______________________________________");
+	            						System.out.println("_________________SALDO_________________");
+	            						System.out.println("            R$:" + c2.getSaldo()+"     ");
+	            						System.out.println("_______________________________________\n");
 	            				}
 	            			}
          			            			
