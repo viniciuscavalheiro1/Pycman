@@ -65,7 +65,7 @@ public class Application {
 	            		
 	            		if(gerente != null) {
 	            			flag = true;	            			
-	            		}	
+	            		} 
 	   
 	            		if(flag) {           			
 	            			int subOp = 1;
